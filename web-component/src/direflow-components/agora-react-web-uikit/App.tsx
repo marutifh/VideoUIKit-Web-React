@@ -19,6 +19,15 @@ const App: FC<Props> = (props) => {
     dispatch(event);
   };
 
+  const handleUserJoinedEvent = () => {
+    try {
+      const event = new Event('agoraUserJoinedCall');
+      dispatch(event);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <AgoraUIKit
       rtcProps={{
@@ -49,6 +58,7 @@ const App: FC<Props> = (props) => {
           console.log('end call is clicked');
           handleEndCallClick()
         },
+        'user-joined': () => { console.log('user-joined event'); handleUserJoinedEvent() },
       }} />
   );
 };
